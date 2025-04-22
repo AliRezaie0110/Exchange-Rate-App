@@ -14,6 +14,15 @@ function MainPage() {
       .then(data => setRate(data.conversion_rates))
   }, [defaultCurrency]);
 
+  const handleAmountChange = (e) => {
+    const value = e.target.value;
+    if (value === "") {
+      setAmount("");
+    } else {
+      setAmount(value)
+    }
+  };
+
   if (!rate) {
     return (
       <div className="container">
@@ -30,7 +39,7 @@ function MainPage() {
         <input
           type="number"
           value={amount}
-          onChange={e => setAmount(Number(e.target.value))}
+          onChange={handleAmountChange}
         />
         <select
           value={defaultCurrency}
